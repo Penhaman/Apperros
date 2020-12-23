@@ -1,0 +1,36 @@
+[
+    {
+        "models": [
+            { 
+                "key": "'1'",
+                "name": "ECOSYS M2040dn", 
+                "errors": {
+                    "0030": {
+                        "description": "some descript",
+                        "remedy": "some remedy"
+                    },
+                    "0040": {
+                        "description": "some descript 2",
+                        "remedy": "some remedy 2"
+                    }
+                }
+            },
+            {
+                "key": "2",
+                "name": "ECOSYS M2540dn", 
+                "errors": {
+                    "0030": {
+                        "description": "some descript",
+                        "remedy": "some remedy"
+                    },
+                    "0040": {
+                        "description": "some descript 2 ",
+                        "remedy": "some remedy 2"
+                    }
+                }
+            }
+        
+        
+        ]
+    }
+]

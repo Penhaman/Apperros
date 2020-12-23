@@ -1,0 +1,29 @@
+{
+  "name": "Printry",
+  "displayName": "Printry",
+  "expo": {
+    "name": "Printry",
+    "slug": "Printry",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./src/assets/icon.png",
+    "splash": {
+      "image": "./src/assets/splash.png",
+      "resizeMode": "cover"
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "description": ""
+  },
+  "ios": {
+    "config": {
+      "googleMobileAdsAppId": "ca-app-pub-3940256099942544~3347511713"
+    }
+  },
+  "android": {
+    "config": {
+      "googleMobileAdsAppId": "ca-app-pub-3940256099942544~3347511713"
+    }
+  }
+}
