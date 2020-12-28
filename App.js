@@ -3,7 +3,7 @@ import { registerRootComponent } from 'expo';
 import React, {useState} from 'react';
 import * as Font from 'expo-font';
 
-import {AppLoading} from 'expo';
+import AppLoading from 'expo-app-loading';
 import AppNavigator from './src/routes/drawer';
 
 const getFonts = () => Font.loadAsync({
