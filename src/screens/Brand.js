@@ -9,10 +9,10 @@ import { useEffect } from 'react';
 import {useThrottle} from '@react-hook/throttle'
 
 
-const GET_KYOCERA = (search) => {
+const getModels = (brandId, search) => {
     return gql`
-    query Kyocera {
-        model(where: {id_brand: {_eq: 10}, name: {_ilike: "%${search}%"}}, limit: 20, order_by: {name: asc}) {
+    query Models {
+        model(where: {id_brand: {_eq: ${brandId}}, name: {_ilike: "%${search}%"}}, limit: 20, order_by: {name: asc}) {
         name
         id
       }
@@ -20,14 +20,14 @@ const GET_KYOCERA = (search) => {
 `};
 
 function ModelList(props) {
-    const { loading, error, data } = useQuery(GET_KYOCERA(props.search));
+    const { loading, error, data } = useQuery(getModels(props.brandId, props.search));
   
     if (loading) return <Text></Text>;
   
     return (
         <View>
-            {data && data.model && <FlatList data={data.model} keyExtractor={(item) => item.id} renderItem={({item}) => (
-                <TouchableOpacity onPress={() => props.navigation.navigate('errorKyocera', {
+            {data && data.model && <FlatList data={data.model} keyExtractor={(item) => ""+item.id} renderItem={({item}) => (
+                <TouchableOpacity onPress={() => props.navigation.navigate('Error', {
                     name: item.name, modelId: item.id})}>
                     <Card>
                         <Text style={globalStyles.titleText}> {item.name} </Text>
@@ -38,7 +38,7 @@ function ModelList(props) {
     );
   }
 
-export default function Kyocera ({navigation}) {
+export default function Brand ({navigation, route}) {
     const [search, setSearch] = React.useState('');
     const [delayed, setDelayed] = useThrottle('', 3);
 
@@ -54,7 +54,7 @@ export default function Kyocera ({navigation}) {
                 value={search}
                 style={globalStyles.searchB}
             />
-            <ModelList search={delayed} navigation={navigation}/>
+            <ModelList search={delayed} brandId={route.params.brandId} navigation={navigation}/>
             <AdMobBanner
             style={globalStyles.ads}
             bannerSize="fullBanner"

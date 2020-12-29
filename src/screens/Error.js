@@ -1,14 +1,14 @@
 import React from 'react';
 import { Text, View, TouchableOpacity, FlatList } from 'react-native';
-import { globalStyles } from '../../shared/globalStyles';
-import Card from '../../shared/card';
+import { globalStyles } from '../shared/globalStyles';
+import Card from '../shared/card';
 import { AdMobBanner } from 'expo-ads-admob';
 import { gql, useQuery } from '@apollo/client';
 import { useEffect } from 'react';
 import { useThrottle } from '@react-hook/throttle'
 import { Searchbar } from 'react-native-paper';
 
-const GET_ERROR = (modelId, code) => {
+const getErrors = (modelId, code) => {
     return gql`
     query Error {
         error(limit: 20, order_by: {code: asc}, where: {id_model: {_eq: ${modelId}}, code: {_ilike: "%${code}%"}}) {
@@ -21,10 +21,10 @@ const GET_ERROR = (modelId, code) => {
       }   
 `};
 
-export default function errorKyocera({ navigation, route }) {
+export default function Error({ navigation, route }) {
     const [search, setSearch] = React.useState('');
     const [delayed, setDelayed] = useThrottle('', 3);
-    const { loading, error, data } = useQuery(GET_ERROR(route.params.modelId, delayed));
+    const { loading, error, data } = useQuery(getErrors(route.params.modelId, delayed));
 
     useEffect(() => {
         setDelayed(search)
@@ -39,8 +39,8 @@ export default function errorKyocera({ navigation, route }) {
                 style={globalStyles.searchB}
             />
             {
-                data && data.error && <FlatList data={data.error} renderItem={({ item }) => (
-                    <TouchableOpacity onPress={() => navigation.navigate('kyoceraDesc', {
+                data && data.error && <FlatList data={data.error} keyExtractor={(item) => ""+item.id} renderItem={({ item }) => (
+                    <TouchableOpacity onPress={() => navigation.navigate('Desc', {
                         name: item.code, description: item.description, causes: item.causes, remedy: item.remedy
                     })}>
                         <Card>
