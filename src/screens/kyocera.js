@@ -2,28 +2,50 @@ import * as React from 'react';
 import {Text, View, TouchableOpacity, FlatList} from 'react-native';
 import {globalStyles} from '../shared/globalStyles';
 import Card from '../shared/card';
-import { gql, useQuery } from '@apollo/client';
+import { gql, useLazyQuery, useQuery  } from '@apollo/client';
 import { listKyocera } from './lists/KyoceraList';
 import { Searchbar } from 'react-native-paper';
 import {AdMobBanner} from 'expo-ads-admob';
+import { useEffect } from 'react';
+import {useThrottle} from '@react-hook/throttle'
+
+
+const GET_KYOCERA = (search) => {
+    return gql`
+    query Kyocera {
+        model(where: {id_brand: {_eq: 10}, name: {_ilike: "%${search}%"}}, limit: 20, order_by: {name: asc}) {
+        name
+        id
+      }
+    }   
+`};
+
+function ModelList(props) {
+    const { loading, error, data } = useQuery(GET_KYOCERA(props.search));
+  
+    if (loading) return <p>Loading ...</p>;
+  
+    return (
+        <div>
+            {data && data.model && <FlatList data={data.model} keyExtractor={(item) => item.id} renderItem={({item}) => (
+                <TouchableOpacity onPress={() => props.navigation.navigate('errorKyocera', {
+                    name: item.name, errors: item.errors})}>
+                    <Card>
+                        <Text style={globalStyles.titleText}> {item.name} </Text>
+                    </Card>
+                </TouchableOpacity>
+            )} />}
+        </div>
+    );
+  }
 
 export default function Kyocera ({navigation}) {
-    const GET_KYOCERA = gql`
-        query Kyocera {
-            model_aggregate(where: {id_brand: {_eq: 6}}, order_by: {name: asc}) {
-            nodes {
-                name
-            }
-            }
-        }   
-`;
     const [search, setSearch] = React.useState('');
-    const filteredSearch = GET_KYOCERA.filter(model => {
-        const itemData = model.name.toUpperCase();
-        const searchData = search.toUpperCase();
-        return itemData.includes(searchData);
-        });
+    const [delayed, setDelayed] = useThrottle('', 3);
 
+    useEffect(() => {
+        setDelayed(search)
+    }, [search]);
 
     return (
         <View style={globalStyles.container}>
@@ -33,14 +55,7 @@ export default function Kyocera ({navigation}) {
                 value={search}
                 style={globalStyles.searchB}
             />
-            <FlatList data={filteredSearch} keyExtractor={(item) => item.key} renderItem={({item}) => (
-                <TouchableOpacity onPress={() => navigation.navigate('errorKyocera', {
-                    name: item.name, errors: item.errors})}>
-                    <Card>
-                        <Text style={globalStyles.titleText}> {item.name} </Text>
-                    </Card>
-                </TouchableOpacity>
-            )} />
+            <ModelList search={delayed} navigation={navigation}/>
             <AdMobBanner
             style={globalStyles.ads}
             bannerSize="fullBanner"
