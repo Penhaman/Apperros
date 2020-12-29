@@ -14,7 +14,7 @@ const getFonts = () => Font.loadAsync({
 
 // Initialize Apollo Client
 const client = new ApolloClient({
-  uri: 'http://192.168.99.100:8080/v1/graphql',
+  uri: 'http://192.168.9.133:8080/v1/graphql',
   cache: new InMemoryCache()
 });
 
