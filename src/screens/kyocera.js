@@ -23,10 +23,10 @@ const GET_KYOCERA = (search) => {
 function ModelList(props) {
     const { loading, error, data } = useQuery(GET_KYOCERA(props.search));
   
-    if (loading) return <p>Loading ...</p>;
+    if (loading) return <Text></Text>;
   
     return (
-        <div>
+        <View>
             {data && data.model && <FlatList data={data.model} keyExtractor={(item) => item.id} renderItem={({item}) => (
                 <TouchableOpacity onPress={() => props.navigation.navigate('errorKyocera', {
                     name: item.name, errors: item.errors})}>
@@ -35,7 +35,7 @@ function ModelList(props) {
                     </Card>
                 </TouchableOpacity>
             )} />}
-        </div>
+        </View>
     );
   }
 
