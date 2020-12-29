@@ -2,8 +2,7 @@ import * as React from 'react';
 import {Text, View, TouchableOpacity, FlatList} from 'react-native';
 import {globalStyles} from '../shared/globalStyles';
 import Card from '../shared/card';
-import { gql, useLazyQuery, useQuery  } from '@apollo/client';
-import { listKyocera } from './lists/KyoceraList';
+import { gql, useQuery  } from '@apollo/client';
 import { Searchbar } from 'react-native-paper';
 import {AdMobBanner} from 'expo-ads-admob';
 import { useEffect } from 'react';
@@ -29,7 +28,7 @@ function ModelList(props) {
         <View>
             {data && data.model && <FlatList data={data.model} keyExtractor={(item) => item.id} renderItem={({item}) => (
                 <TouchableOpacity onPress={() => props.navigation.navigate('errorKyocera', {
-                    name: item.name, errors: item.errors})}>
+                    name: item.name, modelId: item.id})}>
                     <Card>
                         <Text style={globalStyles.titleText}> {item.name} </Text>
                     </Card>
