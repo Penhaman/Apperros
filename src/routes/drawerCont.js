@@ -53,7 +53,7 @@ export function DrawerCont(props) {
                 </View>
             </DrawerContentScrollView>
             <Drawer.Section style={globalStyles.bottomDrawerSection}>
-                <DrawerItem label="Printry &copy; 2020 João Pereira"
+                <DrawerItem label="Printry &copy; 2021"
                 onPress={urlInfo}
                 />
             </Drawer.Section>

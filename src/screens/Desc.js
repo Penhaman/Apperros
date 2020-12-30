@@ -11,9 +11,9 @@ export default function Desc ({route}) {
     return (
         <View style={globalStyles.container}>
                     <Card>
-                        <Text style={globalStyles.titleText}>Description: {description} </Text>
-                        <Text style={globalStyles.paragraph}>Causes: {causes}</Text>
-                        <Text style={globalStyles.paragraph}>Remedy: {remedy} </Text>
+                        <Text style={globalStyles.titleText}>{description}</Text>
+                        <Text style={globalStyles.paragraph}>{causes}</Text>
+                        <Text style={globalStyles.paragraph}>{remedy} </Text>
                     </Card>
                     
             <AdMobBanner
