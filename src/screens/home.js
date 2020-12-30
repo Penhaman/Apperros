@@ -5,22 +5,22 @@ import {globalStyles} from '../shared/globalStyles';
 export default function Home ({navigation}) {
     
     const pressKyocera = () => {
-        navigation.navigate('Kyocera');
+        navigation.navigate('Brand', {brandId: 10, name: 'Kyocera'});
     }
     const pressKonicaMinolta = () => {
-        navigation.navigate('KonicaMinolta');
+        navigation.navigate('Brand', {brandId: 5, name: 'Konica-Minolta'});
     }
     const pressRicoh = () => {
-        navigation.navigate('Ricoh');
+        navigation.navigate('Brand', {brandId: 9, name: 'Ricoh'});
     }
     const pressCanon = () => {
-        navigation.navigate('Canon');
+        navigation.navigate('Brand', {brandId: 2, name: 'Canon'});
     }
     const pressXerox = () => {
-        navigation.navigate('Xerox');
+        navigation.navigate('Brand', {brandId: 13, name: 'Xerox'});
     }
     const pressHp = () => {
-        navigation.navigate('HP');
+        navigation.navigate('Brand', {brandId: 4, name: 'HP'});
     }
 
     return (
