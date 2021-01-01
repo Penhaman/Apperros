@@ -74,7 +74,8 @@ export const globalStyles = StyleSheet.create({
         flexDirection: 'row',
         flexWrap: 'wrap',
         alignContent:'center',
-        justifyContent: 'center'
+        justifyContent: 'space-between',
+        
     },
     contactLogo: {
         width: 170,

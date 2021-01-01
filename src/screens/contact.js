@@ -2,7 +2,8 @@ import React from 'react';
 import {Text, View, Linking, TouchableOpacity, Image} from 'react-native';
 import {globalStyles} from '../shared/globalStyles';
 import Card from '../shared/card';
-import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { AdMobBanner } from 'expo-ads-admob';
+import { FontAwesome } from '@expo/vector-icons';
 
 export default function Contact () {
     
@@ -27,13 +28,19 @@ export default function Contact () {
                 </Text>
             <View style={globalStyles.socialmedia}>
                 <TouchableOpacity onPress={changeLinkedin}>
-                    <MaterialCommunityIcons name="linkedin-box" size={90} color='#2867B2'  />
+                    <FontAwesome name="linkedin-square" size={90} color='#2867B2'  />
                 </TouchableOpacity>
                 <TouchableOpacity onPress={changeGmail}>
-                    <MaterialCommunityIcons name="gmail" size={90} color="#BB001B" />
+                    <FontAwesome name="envelope" size={90} color="#BB001B" />
                 </TouchableOpacity>
             </View>
             </Card>
+            <AdMobBanner
+                style={globalStyles.ads}
+                bannerSize="fullBanner"
+                adUnitID="ca-app-pub-4176358068972637/6253324686"
+                servePersonalizedAds
+                onDidFailToReceiveAdWithError={(err) => console.log(err)} />
         </View>
     );
 }
