@@ -22,6 +22,8 @@
     }
   },
   "android": {
+    "package": "com.penha.printry",
+    "versionCode": 1,
     "config": {
       "googleMobileAdsAppId": "ca-app-pub-3940256099942544~3347511713"
     }
