@@ -7,6 +7,7 @@
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./src/assets/icon.png",
+    "userInterfaceStyle": "light",
     "splash": {
       "image": "./src/assets/splash.png",
       "resizeMode": "cover"
@@ -14,7 +15,10 @@
     "assetBundlePatterns": [
       "**/*"
     ],
-    "description": ""
+    "description": "",
+    "android": {
+      "package": "com.joaopereiradev.printry"
+    }
   },
   "ios": {
     "config": {
@@ -22,7 +26,8 @@
     }
   },
   "android": {
-    "package": "com.penha.printry",
+    "package": "com.joaopereiradev.printry",
+    "userInterfaceStyle": "light",
     "versionCode": 1,
     "config": {
       "googleMobileAdsAppId": "ca-app-pub-3940256099942544~3347511713"

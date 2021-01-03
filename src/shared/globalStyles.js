@@ -9,10 +9,11 @@ export const globalStyles = StyleSheet.create({
     },
     logoBox: {
         backgroundColor: '#393e46',
-        flex: 2,
+        flex: 1,
         flexDirection: 'row',
         flexWrap: 'wrap',
-        padding: 20,
+        paddingTop: 5,
+        justifyContent: 'center',
         alignContent:'center'
     },
     titleText: {
@@ -25,8 +26,8 @@ export const globalStyles = StyleSheet.create({
         lineHeight: 20,
     },
     logo: {
-        height: 150,
-        width: 150,
+        height: 120,
+        width: 120,
         resizeMode: 'contain',
         alignSelf: 'center',
     },
@@ -38,9 +39,9 @@ export const globalStyles = StyleSheet.create({
         shadowColor: '#333',
         shadowOpacity: 0.3,
         shadowRadius: 3,
-        height: 160,
-        width: 160,
-        margin: 10,
+        height: 130,
+        width: 130,
+        margin: 7,
     },
     searchB: {
         borderRadius: 10,
