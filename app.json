@@ -4,7 +4,7 @@
   "expo": {
     "name": "Printry",
     "slug": "Printry",
-    "version": "1.0.0",
+    "version": "1.0.2",
     "orientation": "portrait",
     "icon": "./src/assets/icon.png",
     "userInterfaceStyle": "light",
@@ -27,6 +27,7 @@
   },
   "android": {
     "package": "com.joaopereiradev.printry",
+    "permissions":["CAMERA"],
     "userInterfaceStyle": "light",
     "versionCode": 1,
     "config": {
